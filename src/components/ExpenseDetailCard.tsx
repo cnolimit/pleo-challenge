@@ -21,18 +21,30 @@ const SExpenseDetailCard = styled.div`
     margin: 10px 0;
     color: #b8b7c3;
   }
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
 `
 
 interface IExpenseDetailCard {
   children: any
   title: string
   fullWidth?: boolean
+  icon?: string
 }
 
 const ExpenseDetailCard = (props: IExpenseDetailCard) => {
   return (
     <SExpenseDetailCard fullWidth={props.fullWidth as boolean}>
-      <span>{props.title}</span>
+      <header>
+        <span>{props.title}</span>
+        {props.icon ? (
+          <span>
+            <img src={props.icon} width='15px' height='15px' />
+          </span>
+        ) : null}
+      </header>
       {props.children}
     </SExpenseDetailCard>
   )
