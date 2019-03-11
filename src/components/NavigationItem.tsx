@@ -17,10 +17,10 @@ const SNavigationItem = styled.li`
   align-items: center;
   color: white;
   cursor: pointer;
-  padding: 0 10px;
+  padding: 0 20px;
 
   span {
-    margin: 0 10px;
+    margin: 0 20px;
     letter-spacing: 1px;
   }
 `
@@ -28,7 +28,7 @@ const SNavigationItem = styled.li`
 const NavigationItem = (props: INavigation) => {
   return (
     <SNavigationItem>
-      <img src={props.icon} width='40px' height='40px' />
+      <img src={props.icon} width='15px' height='15px' />
       <span>{props.title}</span>
     </SNavigationItem>
   )
