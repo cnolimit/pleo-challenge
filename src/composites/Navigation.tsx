@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import NavigationItem from '../components/NavigationItem'
-import ExpenseIcon from '../assets/expense-icon.png'
+import ExpenseIcon from '../assets/expense-icon.svg'
 
 const list = [{ icon: ExpenseIcon, name: 'Expenses' }]
 
