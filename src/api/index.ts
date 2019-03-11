@@ -10,5 +10,5 @@ export const apiPleo = axios.create({
 
 export const getExpenses = () => apiPleo.get('/expenses?limit=5&offset=5')
 
-export const updateExpenses = (id: string, data: { receipts: any; comments: string }) =>
+export const updateExpenses = (id: string, data: { receipts?: any; comment?: string }) =>
   apiPleo.post(`/expenses/${id}`, data)

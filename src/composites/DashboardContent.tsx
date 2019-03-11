@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { getExpenses } from '../api'
+import { getExpenses, updateExpenses } from '../api'
 import ExpenseCard from './ExpenseCard'
 import Input from '../components/Input'
 import Filter from '../components/Filter'
@@ -30,6 +30,7 @@ const Container = styled.main`
   flex-direction: column;
   overflow: hidden;
   border: 2px solid;
+  padding: 10px;
 `
 
 const ExpenseContainer = styled.div`
@@ -76,16 +77,22 @@ interface IDashboardState {
   expenses: IExpense[]
   filteredExpenses: IExpense[]
   activeFilter: FILTERS
+  editing: string
 }
 
 class DashboardContent extends Component<{}, IDashboardState> {
   state = {
     activeFilter: FILTERS.USER,
     expenses: [],
-    filteredExpenses: []
+    filteredExpenses: [],
+    editing: ''
   }
 
   componentDidMount() {
+    this.fetchExpenses()
+  }
+
+  fetchExpenses = () => {
     getExpenses().then(({ data: { expenses } }) => {
       this.setState({ expenses, filteredExpenses: expenses })
     })
@@ -112,6 +119,11 @@ class DashboardContent extends Component<{}, IDashboardState> {
 
   getTime = (date: string) => format(new Date(date), 'HH:MM')
   getDate = (date: string) => format(new Date(date), 'DD MMM YYYY')
+
+  saveExpenseComment = (id: string, comment: string) =>
+    updateExpenses(id, { comment }).then(() => {
+      this.fetchExpenses()
+    })
 
   render() {
     const { filteredExpenses, activeFilter } = this.state
@@ -150,6 +162,7 @@ class DashboardContent extends Component<{}, IDashboardState> {
                 time={this.getTime(expense.date)}
                 date={this.getDate(expense.date)}
                 hasReceipts={!!expense.receipts.length}
+                onSaveComment={comment => this.saveExpenseComment(expense.id, comment)}
               />
             )
           })}

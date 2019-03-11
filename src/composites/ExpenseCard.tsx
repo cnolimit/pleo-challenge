@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import UploadInput from './UploadInput'
 import TextWithIcon from '../components/TextWithIcon'
 import EditIcon from '../assets/edit.svg'
+import AcceptIcon from '../assets/accept.svg'
 import ExpenseDetailCard from '../components/ExpenseDetailCard'
 import formatAmount from '../helpers/format-amount'
 
@@ -23,6 +24,7 @@ interface IExpenseCard {
   currency: string
   comment: string
   hasReceipts: boolean
+  onSaveComment: (comment: string) => void
 }
 
 const Wrapper = styled.div`
@@ -38,6 +40,9 @@ const DetailWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   padding: 0 20px 20px;
   justify-items: center;
+  p {
+    font-size: 0.8rem;
+  }
 `
 
 const DateWrapper = styled.div`
@@ -48,40 +53,74 @@ const DateWrapper = styled.div`
 const Details = styled.div`
   margin-left: 15px;
 `
+interface IExpenseCardState {
+  editing: string
+  comment: string
+}
 
-const ExpenseCard = (props: IExpenseCard) => {
-  return (
-    <Card>
-      <Wrapper>
-        <Image src={Jeppe} />
-        <Details>
-          <Title text={props.merchant} />
-          <TextWithIcon icon={AvatarIcon}>{props.user}</TextWithIcon>
-          <DateWrapper>
-            <TextWithIcon icon={TimeIcon}>{props.time}</TextWithIcon>
-            <TextWithIcon icon={CalendarIcon}>{props.date}</TextWithIcon>
-          </DateWrapper>
-        </Details>
-      </Wrapper>
-      <DetailWrapper>
-        <ExpenseDetailCard title='Amount'>
-          {formatAmount(props.amount, props.currency)}
-        </ExpenseDetailCard>
-        <ExpenseDetailCard title='Receipt'>
-          <UploadInput disabled={props.hasReceipts} />
-        </ExpenseDetailCard>
-        <ExpenseDetailCard fullWidth title='Add Note' icon={EditIcon}>
-          {props.comment ? (
-            <textarea name='comment' id=''>
-              {props.comment}
-            </textarea>
-          ) : (
-            <p>{props.comment}</p>
-          )}
-        </ExpenseDetailCard>
-      </DetailWrapper>
-    </Card>
-  )
+class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
+  state = {
+    editing: '',
+    comment: ''
+  }
+
+  editExpenseComment = (id: string) => this.setState({ editing: id })
+
+  handleCommentOnChange = ({ target }: any) => {
+    this.setState({ comment: target.value })
+  }
+  saveExpenseComment = () => {
+    this.setState({ editing: '' })
+    this.props.onSaveComment(this.state.comment)
+  }
+
+  render() {
+    const { props, state } = this
+    const currentlyEditing = state.editing === props.id
+
+    return (
+      <Card>
+        <Wrapper>
+          <Image src={Jeppe} />
+          <Details>
+            <Title text={props.merchant} />
+            <TextWithIcon icon={AvatarIcon}>{props.user}</TextWithIcon>
+            <DateWrapper>
+              <TextWithIcon icon={TimeIcon}>{props.time}</TextWithIcon>
+              <TextWithIcon icon={CalendarIcon}>{props.date}</TextWithIcon>
+            </DateWrapper>
+          </Details>
+        </Wrapper>
+        <DetailWrapper>
+          <ExpenseDetailCard title='Amount'>
+            {formatAmount(props.amount, props.currency)}
+          </ExpenseDetailCard>
+          <ExpenseDetailCard title='Receipt'>
+            <UploadInput disabled={props.hasReceipts} />
+          </ExpenseDetailCard>
+          <ExpenseDetailCard
+            fullWidth
+            title='Add Note'
+            icon={currentlyEditing ? AcceptIcon : EditIcon}
+            onClick={() =>
+              currentlyEditing ? this.saveExpenseComment() : this.editExpenseComment(props.id)
+            }
+          >
+            {currentlyEditing ? (
+              <textarea
+                onChange={this.handleCommentOnChange}
+                name='comment'
+                id=''
+                defaultValue={props.comment}
+              />
+            ) : (
+              <p>{props.comment}</p>
+            )}
+          </ExpenseDetailCard>
+        </DetailWrapper>
+      </Card>
+    )
+  }
 }
 
 export default ExpenseCard
