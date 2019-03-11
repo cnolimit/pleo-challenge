@@ -8,7 +8,8 @@ import CalendarIcon from '../assets/calendar.svg'
 import AvatarIcon from '../assets/avatar.svg'
 import styled from 'styled-components'
 import UploadInput from './UploadInput'
-import Text from '../components/Text'
+import TextWithIcon from '../components/TextWithIcon'
+import EditIcon from '../assets/edit.svg'
 import ExpenseDetailCard from '../components/ExpenseDetailCard'
 import formatAmount from '../helpers/format-amount'
 
@@ -55,10 +56,10 @@ const ExpenseCard = (props: IExpenseCard) => {
         <Image src={Jeppe} />
         <Details>
           <Title text={props.merchant} />
-          <Text icon={AvatarIcon}>{props.user}</Text>
+          <TextWithIcon icon={AvatarIcon}>{props.user}</TextWithIcon>
           <DateWrapper>
-            <Text icon={TimeIcon}>{props.time}</Text>
-            <Text icon={CalendarIcon}>{props.date}</Text>
+            <TextWithIcon icon={TimeIcon}>{props.time}</TextWithIcon>
+            <TextWithIcon icon={CalendarIcon}>{props.date}</TextWithIcon>
           </DateWrapper>
         </Details>
       </Wrapper>
@@ -69,7 +70,7 @@ const ExpenseCard = (props: IExpenseCard) => {
         <ExpenseDetailCard title='Receipt'>
           <UploadInput disabled={props.hasReceipts} />
         </ExpenseDetailCard>
-        <ExpenseDetailCard fullWidth title='Add Note'>
+        <ExpenseDetailCard fullWidth title='Add Note' icon={EditIcon}>
           {props.comment ? (
             <textarea name='comment' id=''>
               {props.comment}
