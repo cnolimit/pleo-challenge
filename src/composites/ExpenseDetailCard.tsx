@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const SExpenseDetailCard = styled.div`
   display: flex;
-  width: ${(props: { fullWidth: boolean }) => (props.fullWidth ? '310px' : '130px')};
-  min-height: 90px;
+  width: ${(props: { fullWidth: boolean }) => (props.fullWidth ? '85%' : '65%')};
+  height: 90px;
   padding: 10px 15px;
   font-size: 1.2rem;
   color: rgba(0, 0, 0, 0.7);

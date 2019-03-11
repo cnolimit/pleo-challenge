@@ -9,6 +9,7 @@ const SImage = styled.img`
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  margin: 15px 0;
 `
 
 const Image = (props: IImage) => <SImage src={props.src} />

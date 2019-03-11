@@ -7,7 +7,7 @@ interface ICard {
 
 const SCard = styled.div`
   width: 400px;
-  min-height: 450px;
+  height: 450px;
   border-radius: 6px;
   background: white;
   overflow: hidden;

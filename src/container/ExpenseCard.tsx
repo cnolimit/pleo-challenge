@@ -31,6 +31,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 25px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `
 
 const DetailWrapper = styled.div`
