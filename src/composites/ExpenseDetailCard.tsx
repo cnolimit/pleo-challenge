@@ -28,6 +28,9 @@ const SExpenseDetailCard = styled.div`
   img {
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `
 
 interface IExpenseDetailCard {

@@ -33,7 +33,7 @@ const Container = styled.main`
 `
 
 const ExpenseContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   overflow-x: scroll;
