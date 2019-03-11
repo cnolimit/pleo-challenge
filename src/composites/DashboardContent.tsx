@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 import { getExpenses } from '../api'
 import ExpenseCard from './ExpenseCard'
-import SearchIcon from '../assets/search.svg'
+import Input from '../components/Input'
+import Filter from '../components/Filter'
 
 interface IExpense {
   id: string
@@ -66,45 +67,6 @@ const FilterWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `
-
-const Filter = styled.span`
-  border: 2px solid #dee3e8;
-  border-radius: 8px;
-  padding: 5px;
-  margin-top: 15px;
-  margin-right: 10px;
-  font-weight: 500;
-  font-size: 0.8rem;
-  cursor: pointer;
-  text-align: center;
-  background-color: ${(props: { active: boolean }) => (props.active ? '#E7ECF1' : '#f1f4f6')};
-  color: #9daab1;
-  display: inline-block;
-`
-
-const Input = styled.input`
-  width: 100%;
-  border: none;
-  padding: 5px 0;
-  padding-left: 25px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  background-color: transparent;
-  border-bottom: 2px solid #dee3e8;
-  position: relative;
-  background-image: url(${SearchIcon});
-  background-position: left;
-  background-repeat: no-repeat;
-  background-size: 20px;
-  &:focus {
-    outline: none;
-  }
-
-  &::placeholder {
-    color: rgba(0, 0, 0, 0.2);
-  }
-`
-
 enum FILTERS {
   USER = 'USER',
   MERCHANT = 'MERCHANT'
