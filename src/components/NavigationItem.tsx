@@ -8,7 +8,7 @@ interface INavigation {
 }
 
 const SNavigationItem = styled.li`
-  height: 50px;
+  height: 60px;
   background-color: #eb59aa;
   border-radius: 5px;
   list-style-type: none;
