@@ -156,7 +156,7 @@ class DashboardContent extends Component<{}, IDashboardState> {
           </FilterWrapper>
         </Header>
         <ExpenseContainer id='expense-container'>
-          {filteredExpenses.map((expense: IExpense, idx: number) => {
+          {filteredExpenses.map((expense: IExpense) => {
             return (
               <ExpenseCard
                 key={expense.id}
