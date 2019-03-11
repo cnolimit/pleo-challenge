@@ -43,12 +43,13 @@ interface IExpenseDetailCard {
 
 const ExpenseDetailCard = (props: IExpenseDetailCard) => {
   return (
-    <SExpenseDetailCard fullWidth={props.fullWidth as boolean}>
+    <SExpenseDetailCard {...props} fullWidth={props.fullWidth as boolean}>
       <header>
         <span>{props.title}</span>
         {props.icon ? (
           <span>
             <img
+              data-testid='add-comment-button'
               onClick={() => props.onClick && props.onClick()}
               src={props.icon}
               width='15px'

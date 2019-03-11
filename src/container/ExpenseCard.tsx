@@ -83,7 +83,7 @@ class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
     const currentlyEditing = state.editing === props.id
 
     return (
-      <Card>
+      <Card {...props}>
         <Wrapper>
           <Image src={Jeppe} />
           <Details>
@@ -106,19 +106,20 @@ class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
             fullWidth
             title='Add Note'
             icon={currentlyEditing ? AcceptIcon : EditIcon}
+            data-testid={`${props.id}-add-comment`}
             onClick={() =>
               currentlyEditing ? this.saveExpenseComment() : this.editExpenseComment(props.id)
             }
           >
             {currentlyEditing ? (
               <textarea
+                data-testid={`${props.id}-add-comment-textfield`}
                 onChange={this.handleCommentOnChange}
                 name='comment'
-                id=''
                 defaultValue={props.comment}
               />
             ) : (
-              <p>{props.comment}</p>
+              <p data-testid={`${props.id}-comment`}>{props.comment}</p>
             )}
           </ExpenseDetailCard>
         </DetailWrapper>

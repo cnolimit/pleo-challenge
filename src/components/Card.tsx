@@ -20,7 +20,7 @@ const SCard = styled.div`
 `
 
 const Card = (props: ICard) => {
-  return <SCard>{props.children}</SCard>
+  return <SCard {...props}>{props.children}</SCard>
 }
 
 export default Card

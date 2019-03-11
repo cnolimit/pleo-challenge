@@ -132,27 +132,36 @@ class DashboardContent extends Component<{}, IDashboardState> {
           <h1>Expenses</h1>
           <FilterWrapper>
             <Input
+              data-testid='search-textfield'
               type='search'
               placeholder={`Search for a ${activeFilter.toLowerCase()}`}
               onChange={e => this.filterExpenses(e.target.value.toLowerCase())}
             />
             <div>
-              <Filter onClick={this.setUserFilter} active={activeFilter === FILTERS.USER}>
+              <Filter
+                data-testid='user-filter-button'
+                onClick={this.setUserFilter}
+                active={activeFilter === FILTERS.USER}
+              >
                 USER
               </Filter>
-              <Filter onClick={this.setMerchantFilter} active={activeFilter === FILTERS.MERCHANT}>
+              <Filter
+                data-testid='merchant-filter-button'
+                onClick={this.setMerchantFilter}
+                active={activeFilter === FILTERS.MERCHANT}
+              >
                 MERCHANT
               </Filter>
             </div>
           </FilterWrapper>
         </Header>
-        <ExpenseContainer>
+        <ExpenseContainer id='expense-container'>
           {filteredExpenses.map((expense: IExpense, idx: number) => {
             return (
               <ExpenseCard
                 key={expense.id}
                 id={expense.id}
-                data-testid={`expense-card-${idx}`}
+                data-testid={`expense-card`}
                 amount={expense.amount.value}
                 comment={expense.comment}
                 merchant={expense.merchant}
