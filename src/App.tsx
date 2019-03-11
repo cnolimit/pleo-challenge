@@ -3,7 +3,7 @@ import Dashboard from './layouts/Dashboard'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
   body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
