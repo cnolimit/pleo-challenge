@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Sidebar from '../composites/Sidebar'
-import DashboardContent from '../composites/DashboardContent'
+import DashboardContent from '../container/DashboardContent'
 
 const Container = styled.div`
   background-color: #f1f4f6;

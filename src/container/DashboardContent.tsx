@@ -29,7 +29,6 @@ const Container = styled.main`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 2px solid;
   padding: 10px;
 `
 

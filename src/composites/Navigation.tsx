@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import NavigationItem from '../components/NavigationItem'
+import NavigationItem from './NavigationItem'
 import ExpenseIcon from '../assets/expense-icon.svg'
 
 const list = [{ icon: ExpenseIcon, name: 'Expenses' }]
