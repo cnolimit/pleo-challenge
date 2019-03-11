@@ -6,11 +6,13 @@ interface ICard {
 }
 
 const SCard = styled.div`
-  border: 2px solid red;
   width: 400px;
   height: 450px;
-  border-radius: 5px;
+  border-radius: 6px;
   background: white;
+  overflow: hidden;
+  padding: 15px;
+  margin: 25px;
 `
 
 const Card = (props: ICard) => {
