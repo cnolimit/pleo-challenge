@@ -25,6 +25,7 @@ interface IExpenseCard {
   comment: string
   hasReceipts: boolean
   onSaveComment: (comment: string) => void
+  onFileUpload: (id: string, file: any, cd: any) => void
 }
 
 const Wrapper = styled.div`
@@ -60,30 +61,38 @@ const Details = styled.div`
 interface IExpenseCardState {
   editing: string
   comment: string
+  file: string
+  fetching: boolean
 }
 
 class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
   state = {
     editing: '',
-    comment: ''
+    comment: '',
+    file: '',
+    fetching: false
   }
 
   editExpenseComment = (id: string) => this.setState({ editing: id })
-
   handleCommentOnChange = ({ target }: any) => {
     this.setState({ comment: target.value })
   }
-  saveExpenseComment = () => {
+  handleFileUpload = (id: string, file: any, cb: any) => {
+    this.setState({ fetching: true })
+    cb(id, file, () => this.setState({ fetching: false }))
+  }
+  saveExpenseComment = (cb: any) => {
     this.setState({ editing: '' })
-    this.props.onSaveComment(this.state.comment)
+    cb(this.state.comment)
   }
 
   render() {
     const { props, state } = this
+    const { onSaveComment, onFileUpload, ...otherProps } = props
     const currentlyEditing = state.editing === props.id
 
     return (
-      <Card {...props}>
+      <Card {...otherProps}>
         <Wrapper>
           <Image src={Jeppe} />
           <Details>
@@ -100,7 +109,11 @@ class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
             {formatAmount(props.amount, props.currency)}
           </ExpenseDetailCard>
           <ExpenseDetailCard title='Receipt'>
-            <UploadInput disabled={props.hasReceipts} />
+            <UploadInput
+              fetching={this.state.fetching}
+              onSubmit={file => this.handleFileUpload(props.id, file, onFileUpload)}
+              disabled={props.hasReceipts}
+            />
           </ExpenseDetailCard>
           <ExpenseDetailCard
             fullWidth
@@ -108,7 +121,9 @@ class ExpenseCard extends React.Component<IExpenseCard, IExpenseCardState> {
             icon={currentlyEditing ? AcceptIcon : EditIcon}
             data-testid={`${props.id}-add-comment`}
             onClick={() =>
-              currentlyEditing ? this.saveExpenseComment() : this.editExpenseComment(props.id)
+              currentlyEditing
+                ? this.saveExpenseComment(onSaveComment)
+                : this.editExpenseComment(props.id)
             }
           >
             {currentlyEditing ? (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { format } from 'date-fns'
-import { getExpenses, updateExpenses } from '../api'
+import { getExpenses, postComment, postReceipt } from '../api'
 import ExpenseCard from './ExpenseCard'
 import Input from '../components/Input'
 import Filter from '../components/Filter'
@@ -113,6 +113,19 @@ class DashboardContent extends Component<{}, IDashboardState> {
       }))
     }
   }
+
+  onFileUpload = (id: string, file: any, cb: any) => {
+    postReceipt(id, file).then((res: any) => {
+      cb()
+      this.setState({
+        filteredExpenses: this.state.filteredExpenses.map((expense: any) => {
+          if (res.data.id === expense.id) return res.data
+          return expense
+        })
+      })
+    })
+  }
+
   setUserFilter = () => this.setState({ activeFilter: FILTERS.USER })
   setMerchantFilter = () => this.setState({ activeFilter: FILTERS.MERCHANT })
 
@@ -120,7 +133,7 @@ class DashboardContent extends Component<{}, IDashboardState> {
   getDate = (date: string) => format(new Date(date), 'DD MMM YYYY')
 
   saveExpenseComment = (id: string, comment: string) =>
-    updateExpenses(id, { comment }).then(() => {
+    postComment(id, { comment }).then(() => {
       this.fetchExpenses()
     })
 
@@ -170,6 +183,7 @@ class DashboardContent extends Component<{}, IDashboardState> {
                 time={this.getTime(expense.date)}
                 date={this.getDate(expense.date)}
                 hasReceipts={!!expense.receipts.length}
+                onFileUpload={this.onFileUpload}
                 onSaveComment={comment => this.saveExpenseComment(expense.id, comment)}
               />
             )
