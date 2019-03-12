@@ -27,6 +27,7 @@ const SExpenseDetailCard = styled.div`
   }
   img {
     cursor: pointer;
+    border: 2px solid black;
   }
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -42,15 +43,16 @@ interface IExpenseDetailCard {
 }
 
 const ExpenseDetailCard = (props: IExpenseDetailCard) => {
+  const {onClick, ...otherProps} = props
   return (
-    <SExpenseDetailCard {...props} fullWidth={props.fullWidth as boolean}>
+    <SExpenseDetailCard {...otherProps} fullWidth={props.fullWidth as boolean}>
       <header>
         <span>{props.title}</span>
         {props.icon ? (
           <span>
             <img
               data-testid='add-comment-button'
-              onClick={() => props.onClick && props.onClick()}
+              onClick={() => onClick && onClick()}
               src={props.icon}
               width='15px'
               height='15px'
