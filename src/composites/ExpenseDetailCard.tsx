@@ -27,7 +27,6 @@ const SExpenseDetailCard = styled.div`
   }
   img {
     cursor: pointer;
-    border: 2px solid black;
   }
   @media (max-width: 768px) {
     font-size: 1rem;
