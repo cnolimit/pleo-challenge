@@ -9,10 +9,12 @@ interface INavigation {
 
 const SNavigationItem = styled.li`
   height: 60px;
-  background-color: #eb59aa;
+  background-color: #eb4869;
   border-radius: 5px;
   list-style-type: none;
   display: flex;
+  font-weight: 500;
+  font-size: 1rem;
   justify-content: flex-start;
   align-items: center;
   color: white;

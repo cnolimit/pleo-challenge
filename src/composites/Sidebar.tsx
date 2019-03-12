@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
     return (
       <Container>
         <Logo />
-        <User username='Phillip' avatar={User1} />
+        <User username='Jeppe Rindom' avatar={User1} />
         <Navigation />
       </Container>
     )

@@ -6,7 +6,7 @@ interface IFilter {
 }
 
 const Filter = styled.span`
-  border: 2px solid #da63a7;
+  border: 2px solid #eb4869;
   border-radius: 8px;
   padding: 5px;
   margin-top: 15px;
@@ -15,8 +15,8 @@ const Filter = styled.span`
   font-size: 0.8rem;
   cursor: pointer;
   text-align: center;
-  background-color: ${(props: IFilter) => (props.active ? '#da63a7' : '#f1f4f6')};
-  color: ${(props: IFilter) => (props.active ? 'white' : '#da63a7')};
+  background-color: ${(props: IFilter) => (props.active ? '#eb4869' : '#f1f4f6')};
+  color: ${(props: IFilter) => (props.active ? 'white' : '#eb4869')};
   display: inline-block;
 `
 export default Filter
