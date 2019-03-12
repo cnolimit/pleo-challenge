@@ -15,7 +15,7 @@ In total ~3 Days
 
 ### Modules
 
-| Modules           | Why?                                                                                                                                                                        |
+| Module           | Why?                                                                                                                                                                        |
 | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | axios             | axios is really simple to use and allows you to manage create instances to better namespace and managed requests                                                            |
 | cypress           | cypress helps simplify testing your application through a browser, with easy to use syntax                                                                                  |
@@ -29,4 +29,4 @@ I had difficulties working with the upload of the receipts, only later to find t
 
 ### Proudest Area
 
-I enjoyed create the UI as well as creating test to try and cover all of the set requirements
+I enjoyed creating the UI as well as creating test to try and cover all of the set requirements
