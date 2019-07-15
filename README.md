@@ -10,7 +10,7 @@ This project utilises the API provided in the docs in order to carry out the fol
 
 This project design is inspired by a Redesign Exploration by [Prakhar Neel Sharma - Dribbble](https://dribbble.com/shots/3248620-Pleo-Expense-page-Redesign-exploration)
 
-### Time to Complete
+### Time to Complete
 In total ~3 Days
 
 ### Modules
@@ -24,7 +24,7 @@ In total ~3 Days
 | styled-components | styled-components helps simplify styling components and managing class names. It also uses a similar syntax to SCSS allowing for nesting styles, which is really convenient |
 
 
-### Hardest Area
+### Hardest Area
 I had difficulties working with the upload of the receipts, only later to find that I had the endpoint wrong as well as the content-type.
 
 ### Proudest Area
