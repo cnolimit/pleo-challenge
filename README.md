@@ -11,7 +11,7 @@ This project utilises the API provided in the docs in order to carry out the fol
 This project design is inspired by a Redesign Exploration by [Prakhar Neel Sharma - Dribbble](https://dribbble.com/shots/3248620-Pleo-Expense-page-Redesign-exploration)
 
 ### Time to Complete
-In total ~3 Days
+In total ~3 Hours
 
 ### Modules
 
